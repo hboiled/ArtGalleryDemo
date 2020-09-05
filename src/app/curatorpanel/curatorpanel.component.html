@@ -1,0 +1,11 @@
+    <div class="col-md-5 ">
+        <app-list (changeFormMode)="receiveAddWork($event)"
+        ></app-list>        
+    </div>
+    <div class="col-md-7">
+        <!-- <p>display edit form with preview img</p>
+        <app-form [editMode]="trigger"
+        ></app-form> -->
+        
+        <router-outlet></router-outlet>        
+    </div>

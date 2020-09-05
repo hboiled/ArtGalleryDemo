@@ -1,0 +1,21 @@
+a {
+    max-width: 220px;
+}
+
+h4 {
+    text-align: center;
+}
+
+#displaySel:hover {
+    opacity: 80;
+}
+
+.selection {
+    width: 220px;
+    height: 240px;
+    filter: brightness(80%);
+}
+
+.selection:hover { 
+    filter: brightness(100%);
+ }

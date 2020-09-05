@@ -1,0 +1,14 @@
+<a style="cursor: pointer" class="list-group-item clearfix selection" id="displaySel">            
+    <div class="pull-up">
+        <h4 class="list-group-item-heading title">
+            {{ artWork.title }}
+        </h4>
+        <p class="list-group-item-text">
+            {{ artWork.artist }}
+        </p>
+    </div>
+    <span class="pull-down">
+        <img [src]="artWork.imgPath"
+        alt="" class="img-responsive" style="max-height: 220px; max-width: 180px;">
+    </span>
+</a>

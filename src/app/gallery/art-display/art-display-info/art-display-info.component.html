@@ -1,0 +1,36 @@
+<div class="backdrop" (click)="close()">
+
+</div>
+
+<div class="alert-box" [ngStyle]="{ 'overflow-y': viewerOpen ? 'hidden' : 'auto' }">
+    
+    <app-image-viewer [imageURL]="artWork.imgPath" [open]="viewerOpen" (close)="viewerOpen = false"
+    ></app-image-viewer>
+
+    <p>
+        {{ artWork.title }}
+    </p>
+    <p>
+        {{ artWork.artist }}
+    </p>
+    <p>
+        {{ artWork.country }}
+    </p>
+    <p>
+        {{ artWork.review }}
+    </p>
+    <p>
+        {{ artWork.year }}
+    </p>
+    <p>
+        {{ artWork.genre }}
+    </p>
+    
+    <div class="image-container" (click)="viewerOpen = true">
+        <img [src]="artWork.imgPath" alt="">
+    </div>
+    
+    <div class="alert-box-actions">
+        <button class="btn btn-primary" (click)="close()">Close</button>
+    </div>
+</div>

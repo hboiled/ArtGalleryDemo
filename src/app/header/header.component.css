@@ -1,0 +1,17 @@
+#main {
+    color: black;
+}
+
+nav {
+    background-color: rgb(69, 57, 119);
+    /* background-image: url('../../fhEwl.png'); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
+    border: 1px solid rgb(253, 101, 177);
+}
+
+#content {
+    color: rgb(56, 165, 129);
+}
