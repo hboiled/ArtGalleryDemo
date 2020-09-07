@@ -3,8 +3,15 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
 ## Screenshots
+
+Curator Panel:
 ![alt text](https://github.com/hboiled/ArtGalleryDemo/blob/master/screenshots/curatorpanel.png?raw=true)
 
+Modal:
+![alt text](https://github.com/hboiled/ArtGalleryDemo/blob/master/screenshots/modal.png?raw=true)
+
+Image Viewer:
+![alt text](https://github.com/hboiled/ArtGalleryDemo/blob/master/screenshots/viewer.png?raw=true)
 
 ## Development server
 
