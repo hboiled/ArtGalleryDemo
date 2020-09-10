@@ -15,6 +15,7 @@ import { ItemDisplayComponent } from './curatorpanel/list/item-display/item-disp
 import { FooterComponent } from './footer/footer.component';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './curatorpanel/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     ItemDisplayComponent,
     FooterComponent,
     ImageViewerComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
