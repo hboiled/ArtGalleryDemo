@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from "./auth-service";
 
 @Component({
   selector: 'app-auth',
@@ -10,7 +11,7 @@ export class AuthComponent implements OnInit {
 
   error: string = null;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,15 @@ export class AuthComponent implements OnInit {
     // }
 
     this.error = null;
+
+    const cId = form.value.curatorId;
+    const pw = form.value.password;
+
+    this.authService.signIn(cId, pw).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
 
     // todo: implement form validation logic
     this.error = "This sign in form is currently not yet implemented.";
