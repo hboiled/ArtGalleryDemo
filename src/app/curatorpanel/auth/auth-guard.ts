@@ -15,10 +15,12 @@ export class AuthGuard implements CanActivate {
             const user = this.authService.user.value;
             // placeholder to always return false
             //const placeholderValidator = false;
-
-            if (user) {
+            
+            if (user !== null) {
+                console.log("user is valid");
                 return true;
             } else {
+                console.log("no user detected");
                 return this.router.createUrlTree(['/auth']);
             }
 

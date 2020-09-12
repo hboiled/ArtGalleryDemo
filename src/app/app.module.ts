@@ -14,8 +14,9 @@ import { FormComponent } from './curatorpanel/form/form.component';
 import { ItemDisplayComponent } from './curatorpanel/list/item-display/item-display.component';
 import { FooterComponent } from './footer/footer.component';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './curatorpanel/auth/auth.component';
+import { AuthInterceptor } from "./curatorpanel/auth/auth-interceptor-service";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { AuthComponent } from './curatorpanel/auth/auth.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
