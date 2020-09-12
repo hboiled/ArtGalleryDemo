@@ -15,3 +15,8 @@ nav {
 #content {
     color: rgb(56, 165, 129);
 }
+
+.logoutBtn {
+    cursor: pointer;
+    color: ghostwhite;
+}

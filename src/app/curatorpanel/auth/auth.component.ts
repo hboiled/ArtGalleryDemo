@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from "./auth-service";
 
 @Component({
@@ -11,7 +12,8 @@ export class AuthComponent implements OnInit {
 
   error: string = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -29,6 +31,7 @@ export class AuthComponent implements OnInit {
     this.authService.signIn(cId, pw).subscribe(
       response => {
         console.log(response);
+        this.router.navigate(['/curator']);
       }
     );
 

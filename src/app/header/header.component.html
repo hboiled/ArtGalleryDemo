@@ -18,7 +18,11 @@
                 <li routerLinkActive="active">
                     <a routerLink="/gallery" id="content">Gallery</a>
                 </li>
-            </ul>            
+            </ul>   
+            
+            <ul class="nav navbar-nav navbar-right logoutBtn">
+                <li><a *ngIf="curatorLoggedIn" (click)="logout()">Logout</a></li>
+            </ul>
         </div>
     </div>
 </nav>

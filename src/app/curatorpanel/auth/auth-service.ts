@@ -8,6 +8,7 @@ import { User, AuthResponseData } from "./user-model";
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+    // TODO make private and a getter
     user = new BehaviorSubject<User>(null);
     private tokenExprTimeout: any;
     private signInEndpoint: string = "https://localhost:5001/api/user/login";
@@ -28,7 +29,7 @@ export class AuthService {
                 this.handleAuth(
                     responseData.localId,
                     responseData.idToken,
-                    +responseData.expiresIn
+                    +responseData.expiresIn // api is set to +7 days to expire
                     )
             })
         )
@@ -36,10 +37,11 @@ export class AuthService {
 
     private handleAuth(Id: string, token: string, expiresIn: number) {
         // resData expiresIn is in milliseconds so x 1000
+        expiresIn = 604800 * 1000; // Hack: to get 7 days in milliseconds, placeholder
         const exprDate = new Date(new Date().getTime() + +expiresIn * 1000);
         const logedInUser = new User(Id, token, exprDate);        
         this.user.next(logedInUser);      
-        console.log(+exprDate * 1000)  
+        //console.log(+exprDate * 1000)  
         //this.autoLogout(expiresIn * 1000) // milliseconds conversion
         localStorage.setItem('userData', JSON.stringify(logedInUser));
     }
