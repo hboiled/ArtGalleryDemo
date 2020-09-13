@@ -26,6 +26,7 @@ export class AuthService {
                 Password: password
             }
         ).pipe(
+            catchError(this.handleError),
             tap(responseData => {
                 console.log(responseData);
                 console.log(responseData.token);
@@ -108,4 +109,11 @@ export class AuthService {
         this.tokenExprTimeout = null;
     }
 
+    private handleError() {
+        let errorMsg = "Sign in attempt failed. Please make sure your credentials are accurate. Otherwise, contact your administrator.";
+
+        // Vague error msg is intended. Nobody but curators should have access.
+
+        return throwError(errorMsg);
+    }
 }

@@ -17,6 +17,8 @@ import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './curatorpanel/auth/auth.component';
 import { AuthInterceptor } from "./curatorpanel/auth/auth-interceptor-service";
+import { PrivacyComponent } from './static_pages/privacy/privacy.component';
+import { ContactComponent } from './static_pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { AuthInterceptor } from "./curatorpanel/auth/auth-interceptor-service";
     FooterComponent,
     ImageViewerComponent,
     AuthComponent,
+    PrivacyComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

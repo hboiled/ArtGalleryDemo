@@ -19,10 +19,6 @@ export class AuthComponent implements OnInit {
   }
 
   signIn(form: NgForm): void {
-    // if (!form.valid) {
-    //   return;
-    // }
-
     this.error = null;
 
     const cId = form.value.curatorId;
@@ -32,11 +28,11 @@ export class AuthComponent implements OnInit {
       response => {
         console.log(response);
         this.router.navigate(['/curator']);
+      },
+      errorMsg => {
+        this.error = errorMsg;
       }
     );
-
-    // todo: implement form validation logic
-    this.error = "This sign in form is currently not yet implemented.";
 
     form.reset();
   }

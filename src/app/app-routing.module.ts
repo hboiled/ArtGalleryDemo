@@ -6,6 +6,8 @@ import { CuratorpanelComponent } from "./curatorpanel/curatorpanel.component";
 import { GalleryComponent } from "./gallery/gallery.component";
 import { FormComponent } from './curatorpanel/form/form.component';
 import { AuthComponent } from './curatorpanel/auth/auth.component';
+import { PrivacyComponent } from './static_pages/privacy/privacy.component';
+import { ContactComponent } from './static_pages/contact/contact.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
       }
     ] },
   { path: "gallery", component: GalleryComponent },
+  { path: "contact", component: ContactComponent },
+  { path: "privacy", component: PrivacyComponent },
   { path: "auth", component: AuthComponent },
   { path: '**', redirectTo: "/gallery" },
 ];
