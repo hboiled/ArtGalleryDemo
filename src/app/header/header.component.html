@@ -1,22 +1,23 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid" id="main">
-        
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
-                <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span> 
+                <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
                 <!-- Draws three lines for hamburger button -->
-              </button>
-              <a routerLink="/" class="navbar-brand" id="content">Art Gallery</a>
+            </button>
+            <a routerLink="/" class="navbar-brand" id="content">Art Gallery</a>
         </div>
 
         <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="nav navbar-nav">
-               <!-- Curator access contains CRUD functs -->
+                <!-- Curator access contains CRUD functs -->
                 <li routerLinkActive="active">
                     <a routerLink="/curator" id="content">Curator Access</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a routerLink="/gallery" id="content">Gallery</a>
+                    <a routerLink="/gallery" id="content" 
+                    routerLinkActive #rla="routerLinkActive">Gallery</a>
                 </li>
                 <li routerLinkActive="active">
                     <a routerLink="/contact" id="content">Contact</a>
@@ -24,8 +25,15 @@
                 <li routerLinkActive="active">
                     <a routerLink="/privacy" id="content">Privacy</a>
                 </li>
-            </ul>   
-            
+            </ul>
+
+            <form class="navbar-form navbar-left" *ngIf="rla.isActive">
+                <div class="form-group searchInput">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="logoutBtn" *ngIf="curatorLoggedIn" (click)="logout()">Logout</a></li>
             </ul>

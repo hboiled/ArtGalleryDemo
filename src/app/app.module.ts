@@ -19,6 +19,7 @@ import { AuthComponent } from './curatorpanel/auth/auth.component';
 import { AuthInterceptor } from "./curatorpanel/auth/auth-interceptor-service";
 import { PrivacyComponent } from './static_pages/privacy/privacy.component';
 import { ContactComponent } from './static_pages/contact/contact.component';
+import { LoadSpinner } from "./shared/load-spinner/load-spinner.component";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ContactComponent } from './static_pages/contact/contact.component';
     AuthComponent,
     PrivacyComponent,
     ContactComponent,
+    LoadSpinner
   ],
   imports: [
     BrowserModule,

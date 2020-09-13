@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../curatorpanel/auth/auth-service';
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -11,10 +13,13 @@ export class HeaderComponent implements OnInit {
 
   collapsed: boolean = true;
   curatorLoggedIn: boolean = false;
+  isOnGalleryRoute: boolean = false;
 
   userSubscription: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit(): void {
     this.userSubscription = this.authService.user.subscribe(
@@ -23,10 +28,19 @@ export class HeaderComponent implements OnInit {
         console.log(this.curatorLoggedIn);
       }
     );    
+    this.checkRouteForGallery();
   }
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+  }
+
+  // does not work yet!
+  checkRouteForGallery(): void {
+    
+    const val = this.route.pathFromRoot[1].snapshot.url[0].path;
+    console.log(val);
+    //this.isOnGalleryRoute = val;
   }
 
   logout() {
