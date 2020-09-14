@@ -12,9 +12,13 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add auth header with jwt if user is logged in and request is to the api url
         const user = this.authService.user.value;
-        const isLoggedIn = user && user.token;
-        const isApiUrl = request.url.startsWith(environment.apiUrl);
-        if (isLoggedIn && isApiUrl) {
+        const isLoggedIn = user && user.token;        
+        const isGetRequest= request.method.toLowerCase() === "get";        
+
+        if (isLoggedIn && !isGetRequest ) {
+            // set bearer header on requests that aren't get
+            // so all CUD operations are restricted
+            console.log("going thru auth interceptor");
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${user.token}`
