@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from "./curatorpanel/auth/auth-guard";
+import { CuratorGuard } from "./curatorpanel/curator-guard";
 
 import { CuratorpanelComponent } from "./curatorpanel/curatorpanel.component";
 import { GalleryComponent } from "./gallery/gallery.component";
@@ -13,7 +14,7 @@ import { ContactComponent } from './static_pages/contact/contact.component';
 const routes: Routes = [
   { path: "", redirectTo: "/gallery", pathMatch: "full" },
   { path: "curator", component: CuratorpanelComponent,
-    canActivate: [AuthGuard],
+    canActivate: [CuratorGuard],
     children: [
       { path: '', redirectTo: "new", pathMatch: "full" },
       { path: 'new', component: FormComponent },      
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: "gallery", component: GalleryComponent },
   { path: "contact", component: ContactComponent },
   { path: "privacy", component: PrivacyComponent },
-  { path: "auth", component: AuthComponent },
+  { path: "auth", component: AuthComponent,
+    canActivate: [AuthGuard] },
   { path: '**', redirectTo: "/gallery" },
 ];
 
