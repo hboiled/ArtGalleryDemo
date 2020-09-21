@@ -7,6 +7,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Curator Panel:
 ![alt text](https://github.com/hboiled/ArtGalleryDemo/blob/master/screenshots/curatorpanel.png?raw=true)
 
+Authentication:
+![alt text](https://github.com/hboiled/ArtGalleryDemo/blob/master/screenshots/auth.png?raw=true)
+
+Load spinner:
+![alt text](https://github.com/hboiled/ArtGalleryDemo/blob/master/screenshots/load-main.png?raw=true)
+
 Modal:
 ![alt text](https://github.com/hboiled/ArtGalleryDemo/blob/master/screenshots/modal.png?raw=true)
 
