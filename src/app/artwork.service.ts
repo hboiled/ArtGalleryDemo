@@ -76,10 +76,23 @@ export class ArtworkService {
             )
     }
 
-    getCategoryList(type: string) {
+    getCategoryList(type: string,) {
 
         return this.http.get(
             this.apiURL + "/" + type);
+            // .pipe(map((data: string[]) => {                
+            //     return data;
+            // }), catchError(error => {
+            //     // send error somewhere
+            //     return throwError(error); // must return observable in order to subscribe
+            // })
+            // )
+    }
+
+    filterByCategory(cat: string, query: string) {
+
+        return this.http.get(
+            this.apiURL + "/" + cat + "/" + query);
             // .pipe(map((data: string[]) => {                
             //     return data;
             // }), catchError(error => {

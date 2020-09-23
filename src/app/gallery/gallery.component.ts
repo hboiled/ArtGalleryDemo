@@ -15,8 +15,10 @@ export class GalleryComponent implements OnInit, OnDestroy {
   private artModels: ArtModel[];
   selWork: ArtModel = null;
   private worksChanged: Subscription;
-  
+
   isLoading: boolean;
+
+  browseOpen: boolean = false;
 
   searchByTitle: FormGroup;
 
@@ -25,7 +27,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
 
   constructor(private galleryService: GalleryService) { }
-  
+
   ngOnDestroy(): void {
     this.worksChanged.unsubscribe();
   }
@@ -37,7 +39,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
     // testing load spinner, remove this later
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 500);
     //this.isLoading = false;
 
     this.initForm();
@@ -55,13 +57,23 @@ export class GalleryComponent implements OnInit, OnDestroy {
     );
   }
 
-  closeModal() {
+  closeDisplayModal(): void {
     this.selWork = null;
   }
 
-  search() {
+  closeBrowseModal(): void {
+    this.browseOpen = false;
+  }
+
+  search(): void {
     const query = this.searchByTitle.value['query'];
-    
+
     this.galleryService.searchWorks(query);
+  }
+
+  setFilter({ cat, val }): void {
+    console.log(cat + " " + val);
+
+    this.galleryService.filterWorks(cat, val);
   }
 }

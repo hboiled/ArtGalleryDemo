@@ -21,13 +21,4 @@ export class ArtDisplayComponent implements OnInit {
     this.artWork = this.galleryService.getWork(this.index);
   }
 
-  // validateImage(): string {
-  //   var http = new XMLHttpRequest();
-
-  //   http.open('HEAD', this.artWork.imgPath, false);
-  //   http.send();
-
-  //   return http.status != 200 ? this.placeholder : this.artWork.imgPath;
-  // }
-
 }

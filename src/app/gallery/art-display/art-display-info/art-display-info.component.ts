@@ -12,8 +12,8 @@ export class ArtDisplayInfoComponent implements OnInit {
   @Input() artWork: ArtModel; // get artwork from display
   
   viewerOpen: boolean = false;
-
-  close() {
+  
+  close(): void {
     this.onClose.emit();
   }
   

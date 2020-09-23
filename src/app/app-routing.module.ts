@@ -24,11 +24,12 @@ const routes: Routes = [
         component: FormComponent,        
       }
     ] },
-  { path: "gallery", component: GalleryComponent,
-    children: [
-      { path: '', redirectTo: "new", pathMatch: "full" },
-      { path: 'browse', component: BrowseComponent },
-    ] },
+  { path: "gallery", component: GalleryComponent
+  // , children: [
+  //     { path: '', redirectTo: "new", pathMatch: "full" },
+  //     { path: 'browse', component: BrowseComponent },
+  //   ] 
+  },
   { path: "contact", component: ContactComponent },
   { path: "privacy", component: PrivacyComponent },
   { path: "auth", component: AuthComponent,

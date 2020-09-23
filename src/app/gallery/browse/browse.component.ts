@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ArtworkService } from 'src/app/artwork.service';
 
 @Component({
@@ -12,7 +12,10 @@ export class BrowseComponent implements OnInit {
   countries: string[];
   genres: string[];
   years: number[];
-
+  
+  @Output() onClose = new EventEmitter<void>();
+  @Output() filterQuery = new EventEmitter<{cat: string, val: string}>();
+  
   constructor(private artWorkService: ArtworkService) { }
 
   ngOnInit(): void {
@@ -39,6 +42,21 @@ export class BrowseComponent implements OnInit {
         this.years = data;
       }
     );
+  }
+
+  selectFilter(filter: string, heading: HTMLHeadingElement): void {
+    //console.log(filter);
+    //console.log(heading.textContent); 
+    this.filterQuery.emit(
+      {
+        cat: heading.textContent,
+        val: filter
+      });
+    this.close();
+  }
+
+  close(): void {
+    this.onClose.emit();
   }
 
 }

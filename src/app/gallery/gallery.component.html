@@ -1,10 +1,17 @@
 <div class="col-xs-12">
 
-    <app-art-display-info [artWork]="selWork" *ngIf="selWork" (onClose)="closeModal()">
+    <app-art-display-info [artWork]="selWork" *ngIf="selWork" (onClose)="closeDisplayModal()">
     </app-art-display-info>
 
     <h3>Placeholder text</h3>
-    <a routerLink="/gallery/browse" id="content">Browse</a>
+
+    <a (click)="browseOpen = true">Browse</a>
+
+    <app-browse *ngIf="browseOpen" 
+    (onClose)="closeBrowseModal()"
+    (filterQuery)="setFilter($event)"
+    ></app-browse>
+
     <hr>
 
     <form class="presentation" [formGroup]="searchByTitle" (ngSubmit)="search()">
@@ -17,10 +24,8 @@
         </div>
     </form>
 
-    <router-outlet></router-outlet>
-
     <!-- Re-enable these!!! -->
-    <!-- <div *ngIf="isLoading" class="presentation">
+    <div *ngIf="isLoading" class="presentation">
         <load-spinner></load-spinner>
     </div>
 
@@ -29,5 +34,5 @@
             <app-art-display [index]="i" (click)="selectWork(i)">
             </app-art-display>
         </div>
-    </div> -->
+    </div>
 </div>

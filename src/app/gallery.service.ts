@@ -14,9 +14,9 @@ export class GalleryService {
 
     initWorks(): void {
         this.artWorkService.retrieveWorks()
-        .subscribe(
-            works => this.setWorks(works)
-        )
+            .subscribe(
+                works => this.setWorks(works)
+            )
     }
 
     artwork: ArtModel[] = [];
@@ -41,7 +41,44 @@ export class GalleryService {
             (data: ArtModel[]) => {
                 this.setWorks(data);
             }
-        )    
+        )
+    }
+
+    filterWorks(cat: string, val: string) {
+        switch (cat) {
+            case "Artists:":
+                this.applyArtistFilter(val);
+                break;
+            case "Genres:":
+                this.applyGenreFilter(val);
+                break;
+            case "Countries:":
+                this.applyCountryFilter(val);
+                break;
+            case "Years:":
+                this.applyYearFilter(val);
+                break;
+        }
+    }
+
+    applyArtistFilter(val: string) {        
+    }
+
+    applyGenreFilter(val: string) {
+
+    }
+
+    applyCountryFilter(val: string) {
+
+    }
+
+    applyYearFilter(val: string) {
+        const category = "year";
+        this.artWorkService.filterByCategory(category, val).subscribe(
+            (data: ArtModel[]) => {
+                this.setWorks(data);
+            }
+        )
     }
 
     // CUD functs
