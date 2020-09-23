@@ -4,8 +4,16 @@
     </app-art-display-info>
 
     <h3>Placeholder text</h3>
-
+    <a routerLink="/gallery/browse" id="content">Browse</a>
     <hr>
+
+    <form [formGroup]="searchByTitle" (ngSubmit)="search()">
+        <label for="query">Search By Title</label>
+        <input type="text" formControlName="query">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- <router-outlet></router-outlet> -->
 
     <div *ngIf="isLoading" style="text-align: center;">
         <load-spinner></load-spinner>

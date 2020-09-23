@@ -28,19 +28,10 @@ export class HeaderComponent implements OnInit {
         console.log(this.curatorLoggedIn);
       }
     );    
-    this.checkRouteForGallery();
   }
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
-  }
-
-  // does not work yet!
-  checkRouteForGallery(): void {
-    
-    const val = this.route.pathFromRoot[1].snapshot.url[0].path;
-    console.log(val);
-    //this.isOnGalleryRoute = val;
   }
 
   logout() {

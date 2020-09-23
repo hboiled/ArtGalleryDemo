@@ -31,12 +31,7 @@ export class ArtworkService {
             this.apiURL)
             .pipe(map((data: ArtModel[]) => {
                 console.log("retrieve works called")
-
-                // const dataArr: ArtModel[] = [];
-                // for (const key in data) {
-                //     dataArr.push({ ...data[key] });
-                // }
-
+                
                 return data;
             }), catchError(error => {
                 // send error somewhere
@@ -66,5 +61,18 @@ export class ArtworkService {
             this.apiURL + "/" + workId,
             newWork
         );
+    }
+
+    searchWorks(query: string) {
+        return this.http.get<ArtModel[]>(
+            this.apiURL + "/search/" + query)
+            .pipe(map((data: ArtModel[]) => {
+                console.log(data)
+                return data;
+            }), catchError(error => {
+                // send error somewhere
+                return throwError(error); // must return observable in order to subscribe
+            })
+            )
     }
 }

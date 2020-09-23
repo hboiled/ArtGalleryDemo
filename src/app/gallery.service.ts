@@ -36,6 +36,14 @@ export class GalleryService {
         this.worksChanged.next(this.getWorks());
     }
 
+    searchWorks(query: string) {
+        this.artWorkService.searchWorks(query).subscribe(
+            (data: ArtModel[]) => {
+                this.setWorks(data);
+            }
+        )    
+    }
+
     // CUD functs
     addWork(work: ArtModel) {
         //this.artwork.push(work);

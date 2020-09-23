@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArtModel } from "./art.model";
 import { GalleryService } from '../gallery.service';
 import { Subscription } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-gallery',
@@ -16,6 +17,9 @@ export class GalleryComponent implements OnInit, OnDestroy {
   private worksChanged: Subscription;
   
   isLoading: boolean;
+
+  searchByTitle: FormGroup;
+
 
   selectWork(index: number) {
     this.selWork = this.artModels[index];
@@ -36,6 +40,14 @@ export class GalleryComponent implements OnInit, OnDestroy {
       this.isLoading = false;
     }, 2000);
     //this.isLoading = false;
+
+    this.initForm();
+  }
+
+  initForm() {
+    this.searchByTitle = new FormGroup({
+      query: new FormControl("Search...", Validators.required)
+    });
   }
 
   updateWorksList(): void {
@@ -48,4 +60,9 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.selWork = null;
   }
 
+  search() {
+    const query = this.searchByTitle.value['query'];
+    
+    this.galleryService.searchWorks(query);
+  }
 }

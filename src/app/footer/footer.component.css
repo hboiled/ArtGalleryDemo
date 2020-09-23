@@ -4,6 +4,6 @@ footer {
     /* overflow hidden stops footer background color from separating from icons and text when stretched */
 }
 
-.galleryFooter {
-    background-color: brown;
+.footerSeparator {
+    border-top: 1px solid black;
 }

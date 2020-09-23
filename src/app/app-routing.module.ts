@@ -9,6 +9,7 @@ import { FormComponent } from './curatorpanel/form/form.component';
 import { AuthComponent } from './curatorpanel/auth/auth.component';
 import { PrivacyComponent } from './static_pages/privacy/privacy.component';
 import { ContactComponent } from './static_pages/contact/contact.component';
+import { BrowseComponent } from './gallery/browse/browse.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,11 @@ const routes: Routes = [
         component: FormComponent,        
       }
     ] },
-  { path: "gallery", component: GalleryComponent },
+  { path: "gallery", component: GalleryComponent,
+    children: [
+      { path: '', redirectTo: "new", pathMatch: "full" },
+      { path: 'browse', component: BrowseComponent },
+    ] },
   { path: "contact", component: ContactComponent },
   { path: "privacy", component: PrivacyComponent },
   { path: "auth", component: AuthComponent,
