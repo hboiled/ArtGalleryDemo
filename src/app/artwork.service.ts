@@ -12,7 +12,7 @@ export class ArtworkService {
     // temporary development URL
     private apiURL: string = "https://localhost:5001/api/ArtWorks";
 
-    constructor(private http: HttpClient) { 
+    constructor(private http: HttpClient) {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = () => {
             if (xhttp.status !== 200) {
@@ -31,7 +31,7 @@ export class ArtworkService {
             this.apiURL)
             .pipe(map((data: ArtModel[]) => {
                 console.log("retrieve works called")
-                
+
                 return data;
             }), catchError(error => {
                 // send error somewhere
@@ -74,5 +74,18 @@ export class ArtworkService {
                 return throwError(error); // must return observable in order to subscribe
             })
             )
+    }
+
+    getCategoryList(type: string) {
+
+        return this.http.get(
+            this.apiURL + "/" + type);
+            // .pipe(map((data: string[]) => {                
+            //     return data;
+            // }), catchError(error => {
+            //     // send error somewhere
+            //     return throwError(error); // must return observable in order to subscribe
+            // })
+            // )
     }
 }

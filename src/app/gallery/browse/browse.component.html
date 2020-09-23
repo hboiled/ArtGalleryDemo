@@ -1,1 +1,25 @@
-<p>browse works!</p>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+            <h3>Artists:</h3>
+            <p *ngFor="let artist of artists">{{ artist }}</p>
+        </div>
+
+        <div class="col-md-3">
+            <h3>Genres:</h3>
+            <p *ngFor="let genre of genres">{{ genre }}</p>            
+        </div>
+
+        <div class="col-md-3">
+            <h3>Countries:</h3>
+            <p *ngFor="let country of countries">{{ country }}</p>
+        </div>
+
+        <div class="col-md-3">
+            <h3>Years:</h3>
+            <p *ngFor="let year of years">{{ year }}</p>
+        </div>
+
+    </div>
+</div>

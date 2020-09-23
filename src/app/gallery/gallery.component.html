@@ -7,15 +7,20 @@
     <a routerLink="/gallery/browse" id="content">Browse</a>
     <hr>
 
-    <form [formGroup]="searchByTitle" (ngSubmit)="search()">
-        <label for="query">Search By Title</label>
-        <input type="text" formControlName="query">
-        <button type="submit">Search</button>
+    <form class="presentation" [formGroup]="searchByTitle" (ngSubmit)="search()">
+        <div class="form-group">
+            <label style="margin-right: 8px;" for="query">Search By Title: </label>
+            <input type="text" formControlName="query" placeholder="Search...">
+            <button type="submit">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Search</button>
+        </div>
     </form>
 
-    <!-- <router-outlet></router-outlet> -->
+    <router-outlet></router-outlet>
 
-    <div *ngIf="isLoading" style="text-align: center;">
+    <!-- Re-enable these!!! -->
+    <!-- <div *ngIf="isLoading" class="presentation">
         <load-spinner></load-spinner>
     </div>
 
@@ -24,5 +29,5 @@
             <app-art-display [index]="i" (click)="selectWork(i)">
             </app-art-display>
         </div>
-    </div>
+    </div> -->
 </div>

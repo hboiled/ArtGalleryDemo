@@ -20,7 +20,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   searchByTitle: FormGroup;
 
-
   selectWork(index: number) {
     this.selWork = this.artModels[index];
   }
@@ -46,7 +45,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.searchByTitle = new FormGroup({
-      query: new FormControl("Search...", Validators.required)
+      query: new FormControl(null, Validators.required)
     });
   }
 

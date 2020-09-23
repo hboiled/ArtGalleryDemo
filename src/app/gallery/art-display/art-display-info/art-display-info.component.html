@@ -6,23 +6,34 @@
     
     <app-image-viewer [imageURL]="artWork.imgPath" [open]="viewerOpen" (close)="viewerOpen = false"
     ></app-image-viewer>
-
+    
     <p>
+        Title:
         {{ artWork.title }}
     </p>
+    
     <p>
+        Artist: 
         {{ artWork.artist }}
     </p>
+    
     <p>
+        Country of Origin: 
         {{ artWork.country }}
     </p>
+    
     <p>
+        Review: 
         {{ artWork.review }}
     </p>
+    
     <p>
+        Year: 
         {{ artWork.year }}
     </p>
+    
     <p>
+        Genre: 
         {{ artWork.genre }}
     </p>
     
