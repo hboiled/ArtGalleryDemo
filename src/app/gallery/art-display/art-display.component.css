@@ -11,11 +11,18 @@ h4 {
 }
 
 .selection {
+    text-align: center;
     width: 220px;
     height: 280px;
     filter: brightness(80%);
+    overflow: hidden;
 }
 
-.selection:hover { 
+.selection:hover {
     filter: brightness(100%);
- }
+}
+
+.imgDisplay {
+    object-fit: cover;
+    border-radius: 50%;
+}

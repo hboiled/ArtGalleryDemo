@@ -7,10 +7,7 @@
 
     <a (click)="browseOpen = true">Browse</a>
 
-    <app-browse *ngIf="browseOpen" 
-    (onClose)="closeBrowseModal()"
-    (filterQuery)="setFilter($event)"
-    ></app-browse>
+    <app-browse *ngIf="browseOpen" (onClose)="closeBrowseModal()" (filterQuery)="setFilter($event)"></app-browse>
 
     <hr>
 
