@@ -15,6 +15,8 @@ export class BrowseComponent implements OnInit {
   
   @Output() onClose = new EventEmitter<void>();
   @Output() filterQuery = new EventEmitter<{cat: string, val: string}>();
+
+  displayEntryCount: boolean = false;
   
   constructor(private artWorkService: ArtworkService) { }
 
@@ -59,4 +61,7 @@ export class BrowseComponent implements OnInit {
     this.onClose.emit();
   }
 
+  calculateDisplayEntryCount() {
+
+  }
 }

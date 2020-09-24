@@ -62,14 +62,30 @@ export class GalleryService {
     }
 
     applyArtistFilter(val: string) {        
+        const category = "artist";
+        this.artWorkService.filterByCategory(category, val).subscribe(
+            (data: ArtModel[]) => {
+                this.setWorks(data);
+            }
+        )
     }
 
     applyGenreFilter(val: string) {
-
+        const category = "genre";
+        this.artWorkService.filterByCategory(category, val).subscribe(
+            (data: ArtModel[]) => {
+                this.setWorks(data);
+            }
+        )
     }
 
     applyCountryFilter(val: string) {
-
+        const category = "country";
+        this.artWorkService.filterByCategory(category, val).subscribe(
+            (data: ArtModel[]) => {
+                this.setWorks(data);
+            }
+        )
     }
 
     applyYearFilter(val: string) {

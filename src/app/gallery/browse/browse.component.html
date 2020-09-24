@@ -2,7 +2,7 @@
 
     <div class="controlPanel">
         <button (click)="close()">Close</button>
-        <button>Enable Entry Count</button>
+        <button (click)="calculateDisplayEntryCount()">Enable Entry Count</button>
     </div>
 
     <div class="row">
@@ -11,24 +11,40 @@
             <h3 #artistHead>Artists:</h3>
             <ul class="list-group">
                 <li *ngFor="let artist of artists" class="list-group-item element">
-                    <p (click)="selectFilter(artist, artistHead)" >{{ artist }} <span class="badge pull-right">z</span></p>                    
+                    <p (click)="selectFilter(artist, artistHead)">{{ artist }}
+                        <span class="badge pull-right">z</span></p>
                 </li>
             </ul>
         </div>
 
         <div class="col-md-3">
-            <h3>Genres:</h3>
-            <p *ngFor="let genre of genres">{{ genre }}</p>            
+            <h3 #genreHead>Genres:</h3>
+            <ul class="list-group">
+                <li *ngFor="let genre of genres" class="list-group-item element">
+                    <p (click)="selectFilter(genre, genreHead)">{{ genre }}
+                        <span class="badge pull-right">z</span></p>
+                </li>
+            </ul>
         </div>
 
         <div class="col-md-3">
-            <h3>Countries:</h3>
-            <p *ngFor="let country of countries">{{ country }}</p>
+            <h3 #countryHead>Countries:</h3>
+            <ul class="list-group">
+                <li *ngFor="let country of countries" class="list-group-item element">
+                    <p (click)="selectFilter(country, countryHead)">{{ country }}
+                        <span class="badge pull-right">z</span></p>
+                </li>
+            </ul>
         </div>
 
         <div class="col-md-3">
             <h3 #yearHead>Years:</h3>
-            <p (click)="selectFilter(year, yearHead)" *ngFor="let year of years">{{ year }}</p>
+            <ul class="list-group">
+                <li *ngFor="let year of years" class="list-group-item element">
+                    <p (click)="selectFilter(year, yearHead)">{{ year }}
+                        <span class="badge pull-right">z</span></p>
+                </li>
+            </ul>
         </div>
 
     </div>
