@@ -76,4 +76,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
     this.galleryService.filterWorks(cat, val);
   }
+
+  resetFilters(): void {
+    this.galleryService.initWorks();
+  }
 }

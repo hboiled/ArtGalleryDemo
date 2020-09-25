@@ -6,6 +6,7 @@
     <h3>Placeholder text</h3>
 
     <a (click)="browseOpen = true">Browse</a>
+    <button (click)="resetFilters()">Default</button>
 
     <app-browse *ngIf="browseOpen" (onClose)="closeBrowseModal()" (filterQuery)="setFilter($event)"></app-browse>
 

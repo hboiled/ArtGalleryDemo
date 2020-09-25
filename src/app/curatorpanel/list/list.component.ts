@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 
-import { GalleryService } from "../../services/gallery.service";
+import { CuratorService } from "../../services/curator-service";
 import { ArtModel } from 'src/app/gallery/art.model';
 import { Subscription } from 'rxjs';
 
@@ -16,20 +16,22 @@ export class ListComponent implements OnInit, OnDestroy {
   
   private worksChanged: Subscription;
 
-  constructor(private galleryService: GalleryService) { }
+  constructor(private curatorService: CuratorService) { }
  
   ngOnDestroy(): void {
     this.worksChanged.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.artWorks = this.galleryService.getWorks();
+    this.artWorks = this.curatorService.getWorks();
     this.updateWorksList();
   }
 
   updateWorksList(): void {
-    this.worksChanged = this.galleryService.worksChanged.subscribe(
-      (works: ArtModel[]) => this.artWorks = works
+    this.worksChanged = this.curatorService.worksChanged.subscribe(
+      (works: ArtModel[]) => {
+        this.artWorks = works;
+      }
     );
   }
 

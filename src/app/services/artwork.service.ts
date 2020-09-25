@@ -30,8 +30,6 @@ export class ArtworkService {
         return this.http.get<ArtModel[]>(
             this.apiURL)
             .pipe(map((data: ArtModel[]) => {
-                console.log("retrieve works called")
-
                 return data;
             }), catchError(error => {
                 // send error somewhere

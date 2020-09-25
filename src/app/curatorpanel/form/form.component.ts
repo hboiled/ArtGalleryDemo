@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { GalleryService } from "../../services/gallery.service";
+import { CuratorService } from "../../services/curator-service";
 import { ArtModel } from 'src/app/gallery/art.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ArtworkService } from 'src/app/services/artwork.service';
@@ -20,8 +20,7 @@ export class FormComponent implements OnInit {
   index: number;
   id: number;
 
-  constructor(private galleryService: GalleryService,
-    private artService: ArtworkService,
+  constructor(private curatorService: CuratorService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -46,7 +45,7 @@ export class FormComponent implements OnInit {
     
 
     if (this.editMode) {
-      const work = this.galleryService.getWork(this.index);
+      const work = this.curatorService.getWork(this.index);
       
       if (work === undefined) {        
         this.router.navigate(["curator"]);        
@@ -86,19 +85,19 @@ export class FormComponent implements OnInit {
       this.id
     );
     if (this.editMode) {      
-      this.galleryService.updateWork(this.galleryService.getWork(this.index), 
+      this.curatorService.updateWork(this.curatorService.getWork(this.index), 
         newWork)
         .subscribe(response => {
           console.log(response);
-          this.galleryService.initWorks();
+          this.curatorService.initWorks();
         }
         );
     } else {      
       //this.galleryService.addWork(newWork)
-      this.galleryService.addWork(this.editForm.value)
+      this.curatorService.addWork(this.editForm.value)
         .subscribe(response => {
           console.log(response);
-          this.galleryService.initWorks();
+          this.curatorService.initWorks();
         })
     }
   }
@@ -106,10 +105,10 @@ export class FormComponent implements OnInit {
   delete() {
     if (this.editMode) {
       //this.galleryService.deleteWork(this.workId);
-      this.galleryService.deleteWork(this.galleryService.getWork(this.index))
+      this.curatorService.deleteWork(this.curatorService.getWork(this.index))
         .subscribe(response => {
           console.log(response);
-          this.galleryService.initWorks();
+          this.curatorService.initWorks();
         });
       this.router.navigate(["curator"]);  
     }    

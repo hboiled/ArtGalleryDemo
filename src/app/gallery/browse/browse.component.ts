@@ -74,10 +74,6 @@ export class BrowseComponent implements OnInit {
     this.onClose.emit();
   }
 
-  resetFilters(): void {
-    
-  }
-
   calculateDisplayEntryCount(): void {
     this.artists.forEach(element => {
       this.browseService.filterByCategory("artist", element.val).subscribe(

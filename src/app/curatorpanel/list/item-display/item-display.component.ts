@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ArtModel } from 'src/app/gallery/art.model';
-import { GalleryService } from 'src/app/services/gallery.service';
+import { CuratorService } from 'src/app/services/curator-service';
 
 @Component({
   selector: 'app-item-display',
@@ -13,11 +13,11 @@ export class ItemDisplayComponent implements OnInit {
   selWork: ArtModel;
 
   
-  constructor(private galleryService: GalleryService) { }
+  constructor(private curatorService: CuratorService) { }
 
   ngOnInit(): void {
     // recheck this
-    const work: ArtModel = this.galleryService.getWork(this.index);
+    const work: ArtModel = this.curatorService.getWork(this.index);
     this.selWork = work === null ? null : work;
   }
 
