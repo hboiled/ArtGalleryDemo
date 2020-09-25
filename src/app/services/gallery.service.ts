@@ -1,13 +1,15 @@
 import { Injectable, OnInit } from "@angular/core";
 
-import { ArtModel } from "./gallery/art.model";
+import { ArtModel } from "../gallery/art.model";
 import { ArtworkService } from "./artwork.service";
+import { BrowseService } from "./browse-service";
 import { Subject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class GalleryService {
 
-    constructor(private artWorkService: ArtworkService) {
+    constructor(private artWorkService: ArtworkService,
+        private browseService: BrowseService) {
         this.initWorks();
         this.getWorks();
     }
@@ -37,7 +39,7 @@ export class GalleryService {
     }
 
     searchWorks(query: string) {
-        this.artWorkService.searchWorks(query).subscribe(
+        this.browseService.searchWorks(query).subscribe(
             (data: ArtModel[]) => {
                 this.setWorks(data);
             }
@@ -63,7 +65,7 @@ export class GalleryService {
 
     applyArtistFilter(val: string) {        
         const category = "artist";
-        this.artWorkService.filterByCategory(category, val).subscribe(
+        this.browseService.filterByCategory(category, val).subscribe(
             (data: ArtModel[]) => {
                 this.setWorks(data);
             }
@@ -72,7 +74,7 @@ export class GalleryService {
 
     applyGenreFilter(val: string) {
         const category = "genre";
-        this.artWorkService.filterByCategory(category, val).subscribe(
+        this.browseService.filterByCategory(category, val).subscribe(
             (data: ArtModel[]) => {
                 this.setWorks(data);
             }
@@ -81,7 +83,7 @@ export class GalleryService {
 
     applyCountryFilter(val: string) {
         const category = "country";
-        this.artWorkService.filterByCategory(category, val).subscribe(
+        this.browseService.filterByCategory(category, val).subscribe(
             (data: ArtModel[]) => {
                 this.setWorks(data);
             }
@@ -90,7 +92,7 @@ export class GalleryService {
 
     applyYearFilter(val: string) {
         const category = "year";
-        this.artWorkService.filterByCategory(category, val).subscribe(
+        this.browseService.filterByCategory(category, val).subscribe(
             (data: ArtModel[]) => {
                 this.setWorks(data);
             }

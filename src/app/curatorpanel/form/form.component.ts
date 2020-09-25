@@ -1,10 +1,10 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { GalleryService } from "../../gallery.service";
+import { GalleryService } from "../../services/gallery.service";
 import { ArtModel } from 'src/app/gallery/art.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ArtworkService } from 'src/app/artwork.service';
+import { ArtworkService } from 'src/app/services/artwork.service';
 
 @Component({
   selector: 'app-form',

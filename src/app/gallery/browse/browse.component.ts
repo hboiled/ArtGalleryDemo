@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ArtworkService } from 'src/app/artwork.service';
-import { GalleryService } from 'src/app/gallery.service';
+import { ArtworkService } from 'src/app/services/artwork.service';
+import { BrowseService } from 'src/app/services/browse-service';
+import { GalleryService } from 'src/app/services/gallery.service';
 import { ArtModel } from '../art.model';
 
 @Component({
@@ -20,11 +21,11 @@ export class BrowseComponent implements OnInit {
 
   displayEntryCount: boolean = false;
   
-  constructor(private artWorkService: ArtworkService,
+  constructor(private browseService: BrowseService,
     private galleryService: GalleryService) { }
 
   ngOnInit(): void {
-    this.artWorkService.getCategoryList("artist").subscribe(
+    this.browseService.getCategoryList("artist").subscribe(
       (data: string[]) => {
         data.forEach(element => {
           this.artists.push({val: element, amount: 0});
@@ -33,7 +34,7 @@ export class BrowseComponent implements OnInit {
     );
     console.log(this.artists)
 
-    this.artWorkService.getCategoryList("genre").subscribe(
+    this.browseService.getCategoryList("genre").subscribe(
       (data: string[]) => {
         data.forEach(element => {
           this.genres.push({val: element, amount: 0});
@@ -41,7 +42,7 @@ export class BrowseComponent implements OnInit {
       }
     );
 
-    this.artWorkService.getCategoryList("country").subscribe(
+    this.browseService.getCategoryList("country").subscribe(
       (data: string[]) => {
         data.forEach(element => {
           this.countries.push({val: element, amount: 0});
@@ -49,7 +50,7 @@ export class BrowseComponent implements OnInit {
       }
     );
 
-    this.artWorkService.getCategoryList("year").subscribe(
+    this.browseService.getCategoryList("year").subscribe(
       (data: number[]) => {
         data.forEach(element => {
           this.years.push({val: element, amount: 0});
@@ -79,7 +80,7 @@ export class BrowseComponent implements OnInit {
 
   calculateDisplayEntryCount(): void {
     this.artists.forEach(element => {
-      this.artWorkService.filterByCategory("artist", element.val).subscribe(
+      this.browseService.filterByCategory("artist", element.val).subscribe(
         (data: ArtModel[]) => {
           element.amount = data.length;
         }
@@ -87,7 +88,7 @@ export class BrowseComponent implements OnInit {
     });
     
     this.genres.forEach(element => {
-      this.artWorkService.filterByCategory("genre", element.val).subscribe(
+      this.browseService.filterByCategory("genre", element.val).subscribe(
         (data: ArtModel[]) => {
           element.amount = data.length;
         }
@@ -95,7 +96,7 @@ export class BrowseComponent implements OnInit {
     });
 
     this.countries.forEach(element => {
-      this.artWorkService.filterByCategory("country", element.val).subscribe(
+      this.browseService.filterByCategory("country", element.val).subscribe(
         (data: ArtModel[]) => {
           element.amount = data.length;
         }
@@ -103,7 +104,7 @@ export class BrowseComponent implements OnInit {
     });
 
     this.years.forEach(element => {
-      this.artWorkService.filterByCategory("year", element.val.toFixed()).subscribe(
+      this.browseService.filterByCategory("year", element.val.toFixed()).subscribe(
         (data: ArtModel[]) => {
           element.amount = data.length;
         }

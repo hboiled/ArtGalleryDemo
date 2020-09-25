@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { ArtModel } from "../art.model";
-import { GalleryService } from 'src/app/gallery.service';
+import { GalleryService } from 'src/app/services/gallery.service';
 
 @Component({
   selector: 'app-art-display',

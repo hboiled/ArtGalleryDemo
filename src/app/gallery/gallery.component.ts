@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ArtModel } from "./art.model";
-import { GalleryService } from '../gallery.service';
+import { GalleryService } from '../services/gallery.service';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 

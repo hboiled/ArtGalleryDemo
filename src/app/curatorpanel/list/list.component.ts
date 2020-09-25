@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 
-import { GalleryService } from "../../gallery.service";
+import { GalleryService } from "../../services/gallery.service";
 import { ArtModel } from 'src/app/gallery/art.model';
 import { Subscription } from 'rxjs';
 
