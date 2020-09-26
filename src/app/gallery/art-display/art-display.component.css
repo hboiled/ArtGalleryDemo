@@ -13,7 +13,7 @@ h4 {
 .selection {
     text-align: center;
     width: 220px;
-    height: 280px;
+    height: 275px;
     filter: brightness(80%);
     overflow: hidden;
 }
@@ -22,7 +22,15 @@ h4 {
     filter: brightness(100%);
 }
 
+
+.wrapper img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 20px;
+}
+
 .imgDisplay {
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 50%;    
 }
