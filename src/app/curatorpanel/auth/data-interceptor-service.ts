@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth-service';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class DataInterceptor implements HttpInterceptor {
     constructor(private authService: AuthService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -15,14 +15,15 @@ export class AuthInterceptor implements HttpInterceptor {
         const isGetRequest= request.method.toLowerCase() === "get";        
 
         if (isLoggedIn && !isGetRequest ) {
-            // set bearer header on requests that aren't get
-            // so all CUD operations are restricted
-            console.log("going thru auth interceptor");
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${user.token}`
-                }
-            });
+            // loop through request body and truncate all surrounding whitespace            
+            request = request.clone({});
+            for (let key in request.body) {
+                if (typeof request.body[key] === 'string') {
+                    request.body[key] = request.body[key].trim();                    
+                }                
+            }
+
+            //console.log(request.body);
         }
 
         return next.handle(request);

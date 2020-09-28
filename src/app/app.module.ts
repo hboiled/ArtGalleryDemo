@@ -17,6 +17,7 @@ import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './curatorpanel/auth/auth.component';
 import { AuthInterceptor } from "./curatorpanel/auth/auth-interceptor-service";
+import { DataInterceptor } from "./curatorpanel/auth/data-interceptor-service";
 import { PrivacyComponent } from './static_pages/privacy/privacy.component';
 import { ContactComponent } from './static_pages/contact/contact.component';
 import { LoadSpinner } from "./shared/load-spinner/load-spinner.component";
@@ -50,6 +51,7 @@ import { BrowseComponent } from './gallery/browse/browse.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: DataInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
