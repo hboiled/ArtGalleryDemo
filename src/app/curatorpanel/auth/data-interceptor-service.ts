@@ -14,6 +14,7 @@ export class DataInterceptor implements HttpInterceptor {
         const isLoggedIn = user && user.token;        
         const isGetRequest= request.method.toLowerCase() === "get";        
 
+        //TODO: only trigger on post/put reqs
         if (isLoggedIn && !isGetRequest ) {
             // loop through request body and truncate all surrounding whitespace            
             request = request.clone({});
