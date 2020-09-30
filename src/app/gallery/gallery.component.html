@@ -3,10 +3,12 @@
     <app-art-display-info [artWork]="selWork" *ngIf="selWork" (onClose)="closeDisplayModal()">
     </app-art-display-info>
 
-    <h3>Placeholder text</h3>
+    <h3>Browse or Search</h3>
 
-    <a (click)="browseOpen = true">Browse</a>
-    <button (click)="resetFilters()">Default</button>
+    <div class="btn-group">
+        <button (click)="browseOpen = true">Browse</button>
+        <button (click)="resetFilters()">Default</button>
+    </div>    
 
     <app-browse *ngIf="browseOpen" (onClose)="closeBrowseModal()" (filterQuery)="setFilter($event)"></app-browse>
 

@@ -1,7 +1,7 @@
 
     <!-- Save and edit modes toggle -->
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="editForm">
-        <button type="submit" class="btn btn-primary"> {{ !editMode ? "Add" : "Update" }} </button>
+        <button type="submit" class="btn btn-default"> {{ !editMode ? "Add" : "Update" }} </button>
         <button type="button" class="btn btn-danger" [disabled]="!editMode"
         (click)="delete()">Delete</button>        
 
