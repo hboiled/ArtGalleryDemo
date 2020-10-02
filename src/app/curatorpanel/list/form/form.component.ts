@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { CuratorService } from "../../services/curator-service";
+import { CuratorService } from "../../../services/curator-service";
 import { ArtModel } from 'src/app/gallery/art.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ArtworkService } from 'src/app/services/artwork.service';

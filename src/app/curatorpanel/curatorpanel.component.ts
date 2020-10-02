@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-curatorpanel',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class CuratorpanelComponent implements OnInit {
 
   trigger: boolean = true;
+  catSelect: Subject<string> = new Subject<string>();
 
   constructor() { }
 
@@ -18,5 +20,8 @@ export class CuratorpanelComponent implements OnInit {
     this.trigger = editMode;
   }
 
+  select() {
+
+  }
 
 }

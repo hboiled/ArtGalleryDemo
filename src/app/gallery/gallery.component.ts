@@ -34,6 +34,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.galleryService.setApiUrl("painting");
     this.artModels = this.galleryService.getWorks();
     this.updateWorksList();
     // testing load spinner, remove this later
