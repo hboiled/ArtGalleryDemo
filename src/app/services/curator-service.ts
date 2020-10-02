@@ -3,24 +3,32 @@ import { Injectable, OnInit } from "@angular/core";
 import { ArtModel } from "../gallery/art.model";
 import { ArtworkService } from "./artwork.service";
 import { Subject } from "rxjs";
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CuratorService {
 
-    constructor(private artWorkService: ArtworkService) {
+    private apiUrl: string;
+    
+    artwork: ArtModel[] = [];
+    worksChanged = new Subject<ArtModel[]>();
+
+    setApiUrl(cat: string): void {
+        this.apiUrl = `https://localhost:5001/api/${cat}`;
         this.initWorks();
         this.getWorks();
+        console.log(this.apiUrl)
+    }
+
+    constructor(private artWorkService: ArtworkService) {        
     }
 
     initWorks(): void {
-        this.artWorkService.retrieveWorks()
+        this.artWorkService.retrieveWorks(this.apiUrl)
             .subscribe(
                 works => this.setWorks(works)
             );
     }
-
-    artwork: ArtModel[] = [];
-    worksChanged = new Subject<ArtModel[]>();
 
     getWorks(): ArtModel[] {
         console.log(this.artwork)
@@ -39,19 +47,19 @@ export class CuratorService {
     // CUD functs
     addWork(work: ArtModel) {
         //this.artwork.push(work);
-        return this.artWorkService.addWork(work);
+        return this.artWorkService.addWork(this.apiUrl, work);
         //this.worksChanged.next(this.getWorks());
     }
 
     // subscription needed still?
     updateWork(work, newWork: ArtModel) {
         //this.artwork[index] = work;
-        return this.artWorkService.updateWork(work, newWork);
+        return this.artWorkService.updateWork(this.apiUrl, work, newWork);
         //this.worksChanged.next(this.getWorks());
     }
 
     deleteWork(work: ArtModel) {
-        return this.artWorkService.deleteWork(work);
+        return this.artWorkService.deleteWork(this.apiUrl, work);
         //this.artwork.splice(index, 1);
         //this.worksChanged.next(this.getWorks());
     }

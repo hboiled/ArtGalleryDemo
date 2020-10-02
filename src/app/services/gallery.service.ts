@@ -8,21 +8,27 @@ import { Subject } from "rxjs";
 @Injectable({ providedIn: 'root' })
 export class GalleryService {
 
-    constructor(private artWorkService: ArtworkService,
-        private browseService: BrowseService) {
+    private apiUrl: string;
+    
+    artwork: ArtModel[] = [];
+    worksChanged = new Subject<ArtModel[]>();
+
+    setApiUrl(cat: string): void {
+        this.apiUrl = `https://localhost:5001/api/${cat}`;
         this.initWorks();
-        this.getWorks();
+        this.getWorks();        
+    }
+
+    constructor(private artWorkService: ArtworkService,
+        private browseService: BrowseService) {        
     }
 
     initWorks(): void {
-        this.artWorkService.retrieveWorks()
+        this.artWorkService.retrieveWorks(this.apiUrl)
             .subscribe(
                 works => this.setWorks(works)
             );
     }
-
-    artwork: ArtModel[] = [];
-    worksChanged = new Subject<ArtModel[]>();
 
     getWorks(): ArtModel[] {
         console.log(this.artwork)

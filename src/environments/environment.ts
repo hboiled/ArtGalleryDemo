@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:5001',
   signInEndpoint: "https://localhost:5001/api/user/login",
+  paintingEndpoint: 'https://localhost:5001/api/painting',
+  sculptureEndpoint: 'https://localhost:5001/api/sculpture',
+  filterEndpoint: 'https://localhost:5001.api/filter',
 };
 
 /*

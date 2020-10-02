@@ -4,13 +4,14 @@ import { HttpClient } from "@angular/common/http";
 import { ArtModel } from "../gallery/art.model";
 import { map, catchError } from "rxjs/operators";
 import { Subject, throwError } from 'rxjs';
+import { environment } from "../../environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class ArtworkService {
     // Saves and fetches art works
 
     // temporary development URL
-    private apiURL: string = "https://localhost:5001/api/ArtWorks";
+    public apiURL: string = "https://localhost:5001/";
 
     constructor(private http: HttpClient) {
         const xhttp = new XMLHttpRequest();
@@ -26,9 +27,10 @@ export class ArtworkService {
         xhttp.send();
     }
 
-    retrieveWorks() {
+    retrieveWorks(endpoint: string) {
+        console.log(endpoint)
         return this.http.get<ArtModel[]>(
-            this.apiURL)
+            endpoint)
             .pipe(map((data: ArtModel[]) => {
                 return data;
             }), catchError(error => {
@@ -38,28 +40,28 @@ export class ArtworkService {
             )
     }
 
-    addWork(work: ArtModel) {
+    addWork(endpoint: string, work: ArtModel) {
         return this.http.post(
-            this.apiURL,
+            endpoint,
             work
         );
     }
 
-    deleteWork(work: ArtModel) {
+    deleteWork(endpoint: string, work: ArtModel) {
         const workId = work.id;
         return this.http.delete(
-            this.apiURL + "/" + workId
+            endpoint + "/" + workId
         );
     }
 
     // put req for now
-    updateWork(work: ArtModel, newWork: ArtModel) {
+    updateWork(endpoint: string, work: ArtModel, newWork: ArtModel) {
         const workId = work.id;
         return this.http.put(
-            this.apiURL + "/" + workId,
+            endpoint + "/" + workId,
             newWork
         );
     }
 
-    
+
 }
