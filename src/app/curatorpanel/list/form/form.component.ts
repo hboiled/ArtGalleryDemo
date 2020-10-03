@@ -19,12 +19,14 @@ export class FormComponent implements OnInit {
   //editSelected: ArtModel = null;
   index: number;
   id: number;
+  category: string;
 
   constructor(private curatorService: CuratorService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.wireUpCategory();
     this.route.params.subscribe(
       (params: Params) => {
         this.index = +params['id'];
@@ -32,6 +34,11 @@ export class FormComponent implements OnInit {
         this.initForm();
       }
     )
+  }
+
+  wireUpCategory(): void {
+    this.category = this.route.parent.routeConfig["path"].toUpperCase();    
+    this.curatorService.setApiUrl(this.category);
   }
 
   initForm(): void {

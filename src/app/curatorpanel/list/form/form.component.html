@@ -1,5 +1,6 @@
 
     <!-- Save and edit modes toggle -->
+    <h3>{{ category }}</h3>
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="editForm">
         <button type="submit" class="btn btn-default"> {{ !editMode ? "Add" : "Update" }} </button>
         <button type="button" class="btn btn-danger" [disabled]="!editMode"

@@ -20,6 +20,9 @@ const routes: Routes = [
     canActivate: [CuratorGuard],
     children: [
       {
+        path: '', redirectTo: "/curator/painting", pathMatch: 'full',
+      },
+      {        
         path: 'painting', component: ListComponent,
         children: [
           { path: 'new', component: FormComponent },

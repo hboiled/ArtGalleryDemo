@@ -1,27 +1,24 @@
-    <div class="container">
+<div class="container selectionBar">
+    <nav class="navbar navbar-default">
         <ul class="nav navbar-nav">
             <!-- Curator access contains CRUD functs -->
-            <li routerLinkActive="active">
-                <a routerLink="/curator/painting" id="textContent">Paintings</a>
+            <li routerLinkActive="active" class="active">
+                <a routerLink="/curator/painting" id="textContent">
+                    Paintings</a>
             </li>
             <li routerLinkActive="active">
-                <a 
-                routerLink="/curator/sculpture" id="textContent" routerLinkActive #rla="routerLinkActive">
-                Sculptures</a>
-            </li>
-            <li routerLinkActive="active">
-                <a routerLink="" id="textContent">Not Implemented</a>
-            </li>
-            <li routerLinkActive="active" >
-                <a routerLink="" id="textContent">Not Implemented</a>
+                <a routerLink="/curator/sculpture" id="textContent">
+                    Sculptures</a>
             </li>
         </ul>
-    </div>
-    <br>
-
-    <router-outlet></router-outlet> 
+    </nav>
     
-    <!-- <div class="col-md-5 ">
+</div>
+<br>
+
+<router-outlet></router-outlet>
+
+<!-- <div class="col-md-5 ">
         <app-list 
         (changeFormMode)="receiveAddWork($event)"
         ></app-list>        
