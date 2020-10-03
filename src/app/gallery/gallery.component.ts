@@ -12,9 +12,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class GalleryComponent implements OnInit, OnDestroy {
 
-  private artModels: ArtModel[];
+  artModels: ArtModel[];
   selWork: ArtModel = null;
-  private worksChanged: Subscription;
+  category: string = "painting";
+
+  gallerySelSubscription: Subscription;
+  worksChanged: Subscription;
 
   isLoading: boolean;
 
@@ -30,20 +33,30 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.worksChanged.unsubscribe();
+    this.gallerySelSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
+    this.gallerySelSubscription = this.galleryService.gallerySelection.subscribe(
+      (category: string) => {
+        this.category = category;        
+      }
+    )
+    
+    this.initWorks();
+    
+    this.initForm();
+  }
+
+  initWorks() {
     this.isLoading = true;
-    this.galleryService.setApiUrl("painting");
+    this.galleryService.setApiUrl(this.category);
     this.artModels = this.galleryService.getWorks();
     this.updateWorksList();
     // testing load spinner, remove this later
     setTimeout(() => {
       this.isLoading = false;
     }, 500);
-    //this.isLoading = false;
-
-    this.initForm();
   }
 
   initForm() {
@@ -69,7 +82,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   search(): void {
     const query = this.searchByTitle.value['query'];
 
-    this.galleryService.searchWorks(query);
+    this.galleryService.searchWorks(this.category, query);
   }
 
   setFilter({ cat, val }): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { AuthService } from '../curatorpanel/auth/auth-service';
 import { Location } from "@angular/common";
 import { GalleryService } from '../services/gallery.service';
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   curatorLoggedIn: boolean = false;
   isOnGalleryRoute: boolean = false;
 
-  userSubscription: Subscription;
+  userSubscription: Subscription;   
 
   constructor(private authService: AuthService,
     private galleryService: GalleryService,

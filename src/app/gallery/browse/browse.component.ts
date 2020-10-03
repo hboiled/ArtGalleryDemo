@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ArtworkService } from 'src/app/services/artwork.service';
 import { BrowseService } from 'src/app/services/browse-service';
 import { GalleryService } from 'src/app/services/gallery.service';
@@ -9,26 +10,40 @@ import { ArtModel } from '../art.model';
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.css']
 })
-export class BrowseComponent implements OnInit {
+export class BrowseComponent implements OnInit, OnDestroy {
 
-  artists: {val: string, amount: number}[] = [];
-  countries: {val: string, amount: number}[] = [];
-  genres: {val: string, amount: number}[] = [];
-  years: {val: number, amount: number}[] = [];
-  
+  artists: { val: string, amount: number }[] = [];
+  countries: { val: string, amount: number }[] = [];
+  genres: { val: string, amount: number }[] = [];
+  years: { val: number, amount: number }[] = [];
+
+  gallerySelSubscription: Subscription;
+  gallerySelection: string = "painting";
+
   @Output() onClose = new EventEmitter<void>();
-  @Output() filterQuery = new EventEmitter<{cat: string, val: string}>();
+  @Output() filterQuery = new EventEmitter<{ cat: string, val: string }>();
 
   displayEntryCount: boolean = false;
-  
+
   constructor(private browseService: BrowseService,
     private galleryService: GalleryService) { }
 
+  ngOnDestroy(): void {
+    this.gallerySelSubscription.unsubscribe();
+  }
+
   ngOnInit(): void {
+    this.gallerySelSubscription = this.galleryService.gallerySelection.subscribe(
+      (selection: string) => {
+        this.gallerySelection = selection;
+        this.browseService.setUpApiUrl(this.gallerySelection);
+      }
+    )
+
     this.browseService.getCategoryList("artist").subscribe(
       (data: string[]) => {
         data.forEach(element => {
-          this.artists.push({val: element, amount: 0});
+          this.artists.push({ val: element, amount: 0 });
         });
       }
     );
@@ -37,7 +52,7 @@ export class BrowseComponent implements OnInit {
     this.browseService.getCategoryList("genre").subscribe(
       (data: string[]) => {
         data.forEach(element => {
-          this.genres.push({val: element, amount: 0});
+          this.genres.push({ val: element, amount: 0 });
         });
       }
     );
@@ -45,7 +60,7 @@ export class BrowseComponent implements OnInit {
     this.browseService.getCategoryList("country").subscribe(
       (data: string[]) => {
         data.forEach(element => {
-          this.countries.push({val: element, amount: 0});
+          this.countries.push({ val: element, amount: 0 });
         });
       }
     );
@@ -53,7 +68,7 @@ export class BrowseComponent implements OnInit {
     this.browseService.getCategoryList("year").subscribe(
       (data: number[]) => {
         data.forEach(element => {
-          this.years.push({val: element, amount: 0});
+          this.years.push({ val: element, amount: 0 });
         });
       }
     );
@@ -82,7 +97,7 @@ export class BrowseComponent implements OnInit {
         }
       )
     });
-    
+
     this.genres.forEach(element => {
       this.browseService.filterByCategory("genre", element.val).subscribe(
         (data: ArtModel[]) => {

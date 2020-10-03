@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 import { ArtModel } from "../gallery/art.model";
 import { ArtworkService } from "./artwork.service";
@@ -11,9 +11,12 @@ export class GalleryService {
     private apiUrl: string;
     
     artwork: ArtModel[] = [];
-    worksChanged = new Subject<ArtModel[]>();
+
+    worksChanged: Subject<ArtModel[]> = new Subject<ArtModel[]>();
+    gallerySelection: Subject<string> = new Subject<string>();
 
     setApiUrl(cat: string): void {
+        this.gallerySelection.next(cat);
         this.apiUrl = `https://localhost:5001/api/${cat}`;
         this.initWorks();
         this.getWorks();        
@@ -44,7 +47,7 @@ export class GalleryService {
         this.worksChanged.next(this.getWorks());
     }
 
-    searchWorks(query: string) {
+    searchWorks(cat: string, query: string) {
         this.browseService.searchWorks(query).subscribe(
             (data: ArtModel[]) => {
                 this.setWorks(data);

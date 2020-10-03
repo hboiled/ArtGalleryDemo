@@ -10,9 +10,15 @@ export class BrowseService {
     // Saves and fetches art works
 
     // temporary development URL
-    private apiURL: string = "https://localhost:5001/api/Filter";
+    private apiURL: string;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+        this.setUpApiUrl("painting");
+    }
+
+    setUpApiUrl(endpoint: string) {
+        this.apiURL = "https://localhost:5001/api/Filter/" + endpoint;
+    }
 
     searchWorks(query: string) {
         return this.http.get<ArtModel[]>(
