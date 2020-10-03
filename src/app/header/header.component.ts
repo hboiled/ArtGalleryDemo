@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../curatorpanel/auth/auth-service';
 import { Location } from "@angular/common";
+import { GalleryService } from '../services/gallery.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   userSubscription: Subscription;
 
   constructor(private authService: AuthService,
-    private route: ActivatedRoute,
+    private galleryService: GalleryService,
     ) { }
 
   ngOnInit(): void {
@@ -32,6 +33,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+  }
+
+  setGallery(cat: string) {
+    this.galleryService.setApiUrl(cat);
   }
 
   logout() {

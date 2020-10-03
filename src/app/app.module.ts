@@ -21,6 +21,7 @@ import { DataInterceptor } from "./curatorpanel/auth/data-interceptor-service";
 import { PrivacyComponent } from './static_pages/privacy/privacy.component';
 import { ContactComponent } from './static_pages/contact/contact.component';
 import { LoadSpinner } from "./shared/load-spinner/load-spinner.component";
+import { DropdownDirective } from "./shared/dropdown-directive";
 import { BrowseComponent } from './gallery/browse/browse.component';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { BrowseComponent } from './gallery/browse/browse.component';
     PrivacyComponent,
     ContactComponent,
     LoadSpinner,
+    DropdownDirective,
     BrowseComponent
   ],
   imports: [

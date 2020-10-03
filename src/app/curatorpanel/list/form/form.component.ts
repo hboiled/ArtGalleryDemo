@@ -37,7 +37,7 @@ export class FormComponent implements OnInit {
   }
 
   wireUpCategory(): void {
-    this.category = this.route.parent.routeConfig["path"].toUpperCase();    
+    this.category = this.route.parent.routeConfig["path"];    
     this.curatorService.setApiUrl(this.category);
   }
 
@@ -91,7 +91,9 @@ export class FormComponent implements OnInit {
       this.editForm.value['imgPath'],
       this.id
     );
-    if (this.editMode) {      
+    if (this.editMode) {  
+      console.log(this.curatorService.getWork(this.index))    
+      console.log(newWork)    
       this.curatorService.updateWork(this.curatorService.getWork(this.index), 
         newWork)
         .subscribe(response => {

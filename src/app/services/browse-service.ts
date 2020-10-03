@@ -27,7 +27,7 @@ export class BrowseService {
             )
     }
 
-    getCategoryList(type: string,) {
+    getCategoryList(type: string) {
 
         return this.http.get(
             this.apiURL + "/" + type);

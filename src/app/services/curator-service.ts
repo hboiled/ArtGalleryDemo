@@ -17,7 +17,6 @@ export class CuratorService {
         this.apiUrl = `https://localhost:5001/api/${cat}`;
         this.initWorks();
         this.getWorks();
-        console.log(this.apiUrl)
     }
 
     constructor(private artWorkService: ArtworkService) {        

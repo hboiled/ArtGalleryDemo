@@ -20,14 +20,3 @@ ul li {
     color: rgb(65, 184, 144);
 }
 
-.active-span {
-    background-color: red;
-}
-
-.sculpture {
-    background-image: linear-gradient(90deg, rgb(0, 0, 0) 0%, #7c777e 70%);
-}
-
-.selected {
-    opacity: 0.5;
-}
